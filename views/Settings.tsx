@@ -95,52 +95,52 @@ const Settings: React.FC<SettingsProps> = ({ user, onUpdateUser }) => {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6 md:space-y-10 pb-20 md:pb-0">
-      <div className="flex justify-between items-end gap-4">
+    <div className="max-w-6xl mx-auto space-y-6 pb-10">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div>
-          <h2 className="text-2xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">Configuration</h2>
-          <p className="text-slate-500 dark:text-slate-400 font-medium">Manage your professional profile.</p>
+          <h2 className="text-xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">Configuration</h2>
+          <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Manage your professional profile.</p>
         </div>
         {showSavedToast && (
-          <div className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-6 py-3 rounded-2xl text-xs font-black flex items-center gap-2 shadow-lg animate-fade-up">
-            <Check className="w-3.5 h-3.5" /> Synchronized & Real Notification Sent
+          <div className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-4 py-2.5 rounded-2xl text-xs font-black flex items-center gap-2 shadow-lg animate-fade-up">
+            <Check className="w-3.5 h-3.5" /> Synchronized & Notification Sent
           </div>
         )}
       </div>
 
-      <div className="grid lg:grid-cols-4 gap-8">
-        <div className="flex lg:flex-col overflow-x-auto gap-2 scrollbar-hide">
+      <div className="grid lg:grid-cols-4 gap-5">
+        <div className="flex lg:flex-col overflow-x-auto gap-2 pb-1 scrollbar-hide">
           {tabs.map((tab) => (
             <button 
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`whitespace-nowrap flex-shrink-0 px-6 py-4 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-3 transition-all ${activeTab === tab.id ? 'bg-indigo-600 text-white shadow-lg' : 'bg-white dark:bg-slate-900 text-slate-500 border border-slate-100 dark:border-slate-800'}`}
+              className={`whitespace-nowrap flex-shrink-0 px-5 py-3.5 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-2.5 transition-all ${activeTab === tab.id ? 'bg-indigo-600 text-white shadow-lg' : 'bg-white dark:bg-slate-900 text-slate-500 border border-slate-100 dark:border-slate-800'}`}
             >
-              <tab.icon className="w-4 h-4" /> {tab.label}
+              <tab.icon className="w-4 h-4 shrink-0" /> {tab.label}
             </button>
           ))}
         </div>
 
-        <div className="lg:col-span-3 space-y-8">
+        <div className="lg:col-span-3 space-y-6">
           {activeTab === 'profile' && (
-            <div className="bg-white dark:bg-slate-900 rounded-[3rem] border border-slate-200 dark:border-slate-800 p-8 md:p-14 shadow-sm animate-in fade-in duration-500">
+            <div className="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-800 p-5 sm:p-10 shadow-sm animate-in fade-in duration-500">
               
-              <div className="flex flex-col md:flex-row items-center gap-10 mb-14 border-b border-slate-100 dark:border-slate-800 pb-12">
-                <div className="relative group">
-                  <div className="w-32 h-32 md:w-40 md:h-40 rounded-[2.5rem] overflow-hidden bg-slate-100 dark:bg-slate-800 border-4 border-white dark:border-slate-700 shadow-xl relative">
+              <div className="flex flex-col sm:flex-row items-center gap-6 mb-8 border-b border-slate-100 dark:border-slate-800 pb-8">
+                <div className="relative group shrink-0">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-[2rem] overflow-hidden bg-slate-100 dark:bg-slate-800 border-4 border-white dark:border-slate-700 shadow-xl relative">
                     {formData.profilePicture ? (
                       <img src={formData.profilePicture} alt="Profile" className="w-full h-full object-cover" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-slate-400">
-                        <UserIcon className="w-12 h-12 md:w-16 md:h-16" />
+                        <UserIcon className="w-10 h-10 sm:w-14 sm:h-14" />
                       </div>
                     )}
                     <button 
                       onClick={() => fileInputRef.current?.click()}
-                      className="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center text-white gap-2 cursor-pointer"
+                      className="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center text-white gap-1 cursor-pointer"
                     >
-                      <Camera className="w-8 h-8" />
-                      <span className="text-[10px] font-black uppercase tracking-widest">Change Photo</span>
+                      <Camera className="w-6 h-6" />
+                      <span className="text-[9px] font-black uppercase tracking-widest">Change</span>
                     </button>
                   </div>
                   <input 
@@ -151,12 +151,12 @@ const Settings: React.FC<SettingsProps> = ({ user, onUpdateUser }) => {
                     onChange={handleImageUpload} 
                   />
                 </div>
-                <div className="space-y-4 text-center md:text-left">
-                  <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Identity Portrait</h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 font-medium max-w-xs">
-                    Upload a professional portrait to personalize your intelligence workspace. Recommended size: 512x512px.
+                <div className="space-y-3 text-center sm:text-left">
+                  <h3 className="text-lg font-black text-slate-900 dark:text-white tracking-tight">Identity Portrait</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium max-w-xs">
+                    Upload a professional portrait. Recommended: 512×512px.
                   </p>
-                  <div className="flex items-center gap-3 justify-center md:justify-start">
+                  <div className="flex items-center gap-3 justify-center sm:justify-start">
                     <button 
                       onClick={() => fileInputRef.current?.click()}
                       className="text-[10px] font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 hover:underline"
@@ -175,50 +175,50 @@ const Settings: React.FC<SettingsProps> = ({ user, onUpdateUser }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="space-y-1.5">
                   <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-1">Full Name</label>
                   <input
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-5 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-2xl outline-none font-bold dark:text-white"
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl outline-none font-bold dark:text-white text-sm"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-1">Email</label>
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-5 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-2xl outline-none font-bold dark:text-white"
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl outline-none font-bold dark:text-white text-sm"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-1">Phone</label>
                   <input
                     type="text"
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="w-full px-5 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-2xl outline-none font-bold dark:text-white"
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl outline-none font-bold dark:text-white text-sm"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-1">Institution</label>
                   <input
                     type="text"
                     value={formData.institution}
                     onChange={(e) => setFormData({...formData, institution: e.target.value})}
-                    className="w-full px-5 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-2xl outline-none font-bold dark:text-white"
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl outline-none font-bold dark:text-white text-sm"
                   />
                 </div>
               </div>
-              <div className="mt-12 flex flex-col items-end gap-2">
-                <p className="text-[10px] text-slate-400 font-bold uppercase">Saving will trigger an Email notification</p>
+              <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <p className="text-[10px] text-slate-400 font-bold uppercase">Saving triggers an Email notification</p>
                 <button
                   onClick={handleSave}
                   disabled={isSaving}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-[1.5rem] font-black text-sm shadow-lg flex items-center gap-3 transition-all active:scale-95 disabled:opacity-50"
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3.5 rounded-[1.25rem] font-black text-sm shadow-lg flex items-center justify-center gap-2.5 transition-all active:scale-95 disabled:opacity-50"
                 >
                   {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                   Sync & Notify
@@ -228,21 +228,21 @@ const Settings: React.FC<SettingsProps> = ({ user, onUpdateUser }) => {
           )}
 
           {activeTab === 'security' && (
-            <div className="bg-white dark:bg-slate-900 rounded-[3rem] border border-slate-200 dark:border-slate-800 p-8 md:p-14 shadow-sm animate-in fade-in duration-500">
-               <div className="grid grid-cols-2 gap-6">
+            <div className="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-800 p-5 sm:p-10 shadow-sm animate-in fade-in duration-500">
+               <div className="grid grid-cols-2 gap-4">
                 <button
                   onClick={() => toggleTheme('light')}
-                  className={`p-8 rounded-[2rem] border-4 transition-all flex flex-col items-center gap-4 ${theme === 'light' ? 'border-indigo-600 bg-indigo-50 text-indigo-700' : 'bg-slate-50 dark:bg-slate-850 text-slate-400 border-transparent'}`}
+                  className={`p-5 sm:p-8 rounded-[1.5rem] border-4 transition-all flex flex-col items-center gap-3 ${theme === 'light' ? 'border-indigo-600 bg-indigo-50 text-indigo-700' : 'bg-slate-50 dark:bg-slate-850 text-slate-400 border-transparent'}`}
                 >
-                  <Sun className="w-8 h-8" />
-                  <span className="font-black text-sm uppercase tracking-widest">Light Mode</span>
+                  <Sun className="w-6 h-6 sm:w-8 sm:h-8" />
+                  <span className="font-black text-xs sm:text-sm uppercase tracking-widest">Light Mode</span>
                 </button>
                 <button
                   onClick={() => toggleTheme('dark')}
-                  className={`p-8 rounded-[2rem] border-4 transition-all flex flex-col items-center gap-4 ${theme === 'dark' ? 'border-indigo-600 bg-indigo-900/30 text-indigo-400' : 'bg-slate-50 dark:bg-slate-850 text-slate-400 border-transparent'}`}
+                  className={`p-5 sm:p-8 rounded-[1.5rem] border-4 transition-all flex flex-col items-center gap-3 ${theme === 'dark' ? 'border-indigo-600 bg-indigo-900/30 text-indigo-400' : 'bg-slate-50 dark:bg-slate-850 text-slate-400 border-transparent'}`}
                 >
-                  <Moon className="w-8 h-8" />
-                  <span className="font-black text-sm uppercase tracking-widest">Dark Mode</span>
+                  <Moon className="w-6 h-6 sm:w-8 sm:h-8" />
+                  <span className="font-black text-xs sm:text-sm uppercase tracking-widest">Dark Mode</span>
                 </button>
               </div>
             </div>

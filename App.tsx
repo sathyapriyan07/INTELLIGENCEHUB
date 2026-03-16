@@ -102,16 +102,16 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex transition-colors duration-700 bg-slate-50 dark:bg-[#020617]">
-      <aside className={`fixed inset-y-0 left-0 z-50 w-[280px] sm:w-80 glass border-r border-white/20 transition-all duration-500 ease-in-out lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="h-full flex flex-col p-6 sm:p-8">
-          <div className="flex items-center justify-between mb-10 sm:mb-12">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tighter uppercase">Intelligence Hub</h1>
+      <aside className={`fixed inset-y-0 left-0 z-50 w-[260px] sm:w-72 glass border-r border-white/20 transition-all duration-500 ease-in-out lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="h-full flex flex-col p-5 sm:p-7">
+          <div className="flex items-center justify-between mb-8 sm:mb-10">
+            <div className="flex items-center gap-3">
+              <h1 className="text-base sm:text-xl font-black text-slate-900 dark:text-white tracking-tighter uppercase leading-tight">Intelligence Hub</h1>
             </div>
-            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white"><X className="w-6 h-6" /></button>
+            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white"><X className="w-5 h-5" /></button>
           </div>
 
-          <nav className="flex-1 space-y-1.5 sm:space-y-2 overflow-y-auto no-scrollbar">
+          <nav className="flex-1 space-y-1 overflow-y-auto no-scrollbar">
             {navigation.map((item) => (
               <button
                 key={item.id}
@@ -119,36 +119,36 @@ const App: React.FC = () => {
                   setCurrentTab(item.id as any);
                   if (window.innerWidth < 1024) setIsSidebarOpen(false);
                 }}
-                className={`w-full group flex items-center justify-between px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm transition-all duration-300 ${
+                className={`w-full group flex items-center justify-between px-3 sm:px-4 py-3 rounded-xl font-bold text-xs transition-all duration-300 ${
                   currentTab === item.id 
                   ? 'bg-indigo-600 text-white shadow-lg' 
                   : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-white/5'
                 }`}
               >
-                <div className="flex items-center gap-3 sm:gap-4">
-                  <item.icon className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform ${currentTab === item.id ? 'scale-110' : 'group-hover:scale-110'}`} />
-                  {item.label}
+                <div className="flex items-center gap-3">
+                  <item.icon className={`w-4 h-4 shrink-0 transition-transform ${currentTab === item.id ? 'scale-110' : 'group-hover:scale-110'}`} />
+                  <span className="truncate">{item.label}</span>
                 </div>
-                {currentTab === item.id && <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />}
+                {currentTab === item.id && <ChevronRight className="w-3 h-3 shrink-0" />}
               </button>
             ))}
           </nav>
 
-          <div className="mt-auto space-y-6 pt-6 border-t border-black/5 dark:border-white/5">
-            <button onClick={handleLogout} className="w-full flex items-center gap-4 px-5 py-3 text-slate-400 hover:text-rose-500 font-bold text-xs sm:text-sm transition-colors group">
-              <LogOut className="w-5 h-5 group-hover:-translate-x-1 transition-transform" /> Sign Out
+          <div className="mt-auto space-y-4 pt-5 border-t border-black/5 dark:border-white/5">
+            <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-rose-500 font-bold text-xs transition-colors group">
+              <LogOut className="w-4 h-4 shrink-0 group-hover:-translate-x-1 transition-transform" /> Sign Out
             </button>
-            <div className="p-4 sm:p-5 glass-intense rounded-3xl border border-white/20 shadow-premium">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-indigo-500 text-white flex items-center justify-center font-black shrink-0 overflow-hidden">
+            <div className="p-3 sm:p-4 glass-intense rounded-2xl border border-white/20">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-indigo-500 text-white flex items-center justify-center font-black shrink-0 overflow-hidden text-sm">
                   {user.profilePicture ? (
                     <img src={user.profilePicture} alt={user.name} className="w-full h-full object-cover" />
                   ) : (
                     user.name.charAt(0)
                   )}
                 </div>
-                <div className="flex-1 overflow-hidden">
-                  <p className="text-xs sm:text-sm font-black text-slate-900 dark:text-white truncate">{user.name}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-black text-slate-900 dark:text-white truncate">{user.name}</p>
                   <p className="text-[9px] font-bold text-slate-400 truncate uppercase tracking-widest">Synthesis Mode</p>
                 </div>
               </div>
@@ -157,27 +157,28 @@ const App: React.FC = () => {
         </div>
       </aside>
 
-      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-500 ${isSidebarOpen ? 'lg:pl-80' : 'pl-0'}`}>
-        <header className="h-20 sm:h-24 px-4 sm:px-12 flex items-center justify-between sticky top-0 z-40 glass-intense border-b border-black/5 dark:border-white/5">
-          <div className="flex items-center gap-4">
-            <button onClick={() => setIsSidebarOpen(true)} className={`p-2.5 bg-slate-100 dark:bg-slate-900 rounded-xl text-slate-500 transition-all lg:hidden ${isSidebarOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}><Menu className="w-5 h-5" /></button>
-            <div className="hidden xs:flex flex-col">
+      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-500 ${isSidebarOpen ? 'lg:pl-72' : 'pl-0'}`}>
+        <header className="h-16 sm:h-20 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-40 glass-intense border-b border-black/5 dark:border-white/5">
+          <div className="flex items-center gap-3">
+            <button onClick={() => setIsSidebarOpen(true)} className={`p-2 bg-slate-100 dark:bg-slate-900 rounded-xl text-slate-500 transition-all lg:hidden ${isSidebarOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}><Menu className="w-5 h-5" /></button>
+            <div className="hidden sm:flex flex-col">
               <p className="text-[9px] font-black text-slate-400 uppercase tracking-[0.3em]">Universal Node</p>
-              <h2 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">Synthesis Studio</h2>
+              <h2 className="text-xs font-bold text-slate-900 dark:text-white">Synthesis Studio</h2>
             </div>
           </div>
-          <div className="flex items-center gap-2 sm:gap-4">
-            <div className="flex items-center gap-1 p-1 bg-slate-100/50 dark:bg-slate-800/50 rounded-xl sm:rounded-2xl border border-black/5 dark:border-white/5">
-              <button onClick={toggleTheme} className="p-2 sm:p-2.5 rounded-lg sm:rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-500 hover:bg-white dark:hover:bg-slate-700 transition-all">{isDarkMode ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}</button>
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 p-1 bg-slate-100/50 dark:bg-slate-800/50 rounded-xl border border-black/5 dark:border-white/5">
+              <button onClick={toggleTheme} className="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-brand-500 hover:bg-white dark:hover:bg-slate-700 transition-all">{isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}</button>
             </div>
-            <button onClick={() => setCurrentTab('studio')} className="flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 sm:px-8 py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-[11px] uppercase tracking-widest shadow-lg active:scale-95 transition-all">
-              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span>Synthesize Knowledge</span>
+            <button onClick={() => setCurrentTab('studio')} className="flex items-center gap-1.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-black text-[9px] sm:text-[10px] uppercase tracking-widest shadow-lg active:scale-95 transition-all">
+              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />
+              <span className="hidden xs:inline">Synthesize</span>
+              <span className="hidden sm:inline"> Knowledge</span>
             </button>
           </div>
         </header>
 
-        <main className="flex-1 p-4 sm:p-12 lg:p-16 overflow-x-hidden">
+        <main className="flex-1 p-3 sm:p-6 lg:p-10 overflow-x-hidden">
           <div className="max-w-7xl mx-auto animate-fade-up">
             {renderContent()}
           </div>
