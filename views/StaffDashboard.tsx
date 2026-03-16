@@ -153,12 +153,12 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, onViewNote, onSta
   };
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-20">
+    <div className="space-y-6 max-w-7xl mx-auto pb-10">
       {readyNote && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-md" onClick={() => setReadyNote(null)} />
-          <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-[2.5rem] shadow-2xl relative overflow-hidden animate-in fade-in zoom-in duration-300 border border-slate-200 dark:border-slate-800">
-            <div className="p-10 text-center">
+          <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-[2rem] shadow-2xl relative overflow-hidden animate-in fade-in zoom-in duration-300 border border-slate-200 dark:border-slate-800">
+            <div className="p-6 sm:p-10 text-center">
                <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-[1.5rem] flex items-center justify-center mx-auto mb-6 shadow-inner">
                  <Sparkles className="w-10 h-10" />
                </div>
@@ -185,7 +185,7 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, onViewNote, onSta
         </div>
       )}
 
-      <div className="inline-flex p-1.5 bg-slate-200/50 dark:bg-slate-900/50 backdrop-blur-md rounded-[1.5rem] border border-slate-200 dark:border-slate-800 shadow-inner">
+      <div className="flex p-1 bg-slate-200/50 dark:bg-slate-900/50 backdrop-blur-md rounded-2xl border border-slate-200 dark:border-slate-800 shadow-inner w-full sm:w-fit overflow-x-auto no-scrollbar">
         {[
           { id: 'manage', label: 'Assessments', icon: Shield },
           { id: 'search', label: 'Web Search', icon: Globe },
@@ -194,35 +194,35 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, onViewNote, onSta
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
-            className={`flex items-center gap-2 px-6 py-3.5 rounded-2xl font-black text-xs transition-all duration-300 ${
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-black text-xs transition-all duration-300 whitespace-nowrap ${
               activeTab === tab.id 
               ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-lg' 
               : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-white/50 dark:hover:bg-slate-800/50'
             }`}
           >
-            <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'scale-110' : ''}`} />
+            <tab.icon className={`w-4 h-4 shrink-0 ${activeTab === tab.id ? 'scale-110' : ''}`} />
             {tab.label}
           </button>
         ))}
       </div>
 
       {activeTab === 'manage' && (
-        <div className="space-y-8 animate-in fade-in duration-500">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="space-y-6 animate-in fade-in duration-500">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Assessment Dashboard</h2>
-              <p className="text-slate-500 dark:text-slate-400 font-medium">Create and deploy secure AI-assisted tests for students.</p>
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">Assessment Dashboard</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Create and deploy secure AI-assisted tests.</p>
             </div>
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-2xl font-black shadow-lg flex items-center gap-2 transition-all active:scale-95 group"
+              className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3.5 rounded-2xl font-black shadow-lg flex items-center justify-center gap-2 transition-all active:scale-95 group text-sm"
             >
-              <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform" />
+              <Plus className="w-4 h-4 group-hover:rotate-90 transition-transform" />
               AI Quiz Architect
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {activeQuizzes.length === 0 ? (
               <div className="col-span-full py-32 bg-white dark:bg-slate-900 rounded-[3rem] border-2 border-dashed border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center text-slate-400 text-center px-6">
                 <Layout className="w-12 h-12 opacity-10 mb-8" />
@@ -266,25 +266,25 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, onViewNote, onSta
       )}
 
       {activeTab === 'search' && (
-        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-2xl animate-in slide-in-from-bottom-4 duration-500 flex flex-col md:flex-row overflow-hidden min-h-[500px]">
-          <div className="flex-1 p-10 md:p-16 flex flex-col justify-center space-y-8">
-            <h3 className="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight">
+        <div className="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-2xl animate-in slide-in-from-bottom-4 duration-500 overflow-hidden">
+          <div className="p-6 sm:p-12 flex flex-col justify-center space-y-6">
+            <h3 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight">
               Academic search, <br/>
               <span className="text-indigo-600 dark:text-indigo-400">synthesized.</span>
             </h3>
-            <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3 max-w-2xl">
-              <div className="flex-1 relative group">
-                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
+            <form onSubmit={handleSearch} className="flex flex-col gap-3">
+              <div className="relative group">
+                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="e.g. Modern Architecture patterns..."
-                  className="w-full pl-14 pr-6 py-5 bg-slate-50 dark:bg-slate-850 rounded-[1.25rem] border border-slate-200 dark:border-slate-800 outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/20 focus:border-indigo-500 transition-all font-bold dark:text-white"
+                  className="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-850 rounded-2xl border border-slate-200 dark:border-slate-800 outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/20 focus:border-indigo-500 transition-all font-bold dark:text-white text-sm"
                 />
               </div>
-              <button disabled={loading} className="bg-indigo-600 hover:bg-indigo-700 text-white px-10 rounded-[1.25rem] font-black shadow-xl flex items-center justify-center gap-3 disabled:opacity-50 transition-all active:scale-95 whitespace-nowrap">
-                {loading ? <Loader2 className="animate-spin w-5 h-5" /> : <Sparkles className="w-5 h-5" />}
+              <button disabled={loading} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-2xl font-black shadow-xl flex items-center justify-center gap-3 disabled:opacity-50 transition-all active:scale-95 text-sm">
+                {loading ? <Loader2 className="animate-spin w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
                 Generate Resource
               </button>
             </form>
@@ -293,59 +293,57 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, onViewNote, onSta
       )}
 
       {activeTab === 'upload' && (
-        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-2xl animate-in slide-in-from-bottom-4 duration-500 flex flex-col overflow-hidden min-h-[600px]">
-           <div className="p-8 md:p-12 bg-slate-50 dark:bg-slate-850 border-b border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
-              <div>
-                <h3 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Resource Lab</h3>
-              </div>
-              <div className="flex gap-3 w-full md:w-auto">
+        <div className="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-2xl animate-in slide-in-from-bottom-4 duration-500 flex flex-col overflow-hidden">
+           <div className="p-5 sm:p-10 bg-slate-50 dark:bg-slate-850 border-b border-slate-200 dark:border-slate-800 flex flex-col gap-4">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">Resource Lab</h3>
+              <div className="flex flex-col sm:flex-row gap-3">
                  <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileUpload} accept=".pdf,.docx,.pptx,.txt" />
-                 <button onClick={() => fileInputRef.current?.click()} className="flex-1 md:flex-none px-8 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-2xl font-black text-xs hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2">
+                 <button onClick={() => fileInputRef.current?.click()} className="flex-1 px-6 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-2xl font-black text-xs hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2">
                    <FileUp className="w-4 h-4 text-indigo-500" /> Upload Source
                  </button>
-                 <button onClick={handleGenerate} disabled={loading || !uploadText.trim()} className="flex-1 md:flex-none px-10 py-4 bg-indigo-600 text-white rounded-2xl font-black text-xs hover:bg-indigo-700 shadow-xl flex items-center justify-center gap-3 disabled:opacity-50 transition-all active:scale-95">
-                   {loading ? <Loader2 className="animate-spin w-5 h-5" /> : <Sparkles className="w-5 h-5" />}
+                 <button onClick={handleGenerate} disabled={loading || !uploadText.trim()} className="flex-1 px-6 py-3.5 bg-indigo-600 text-white rounded-2xl font-black text-xs hover:bg-indigo-700 shadow-xl flex items-center justify-center gap-3 disabled:opacity-50 transition-all active:scale-95">
+                   {loading ? <Loader2 className="animate-spin w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
                    Generate Resource
                  </button>
               </div>
            </div>
-           <div className="flex-1 p-8 md:p-12">
+           <div className="p-5 sm:p-10">
              <textarea
                value={uploadText}
                onChange={(e) => setUploadText(e.target.value)}
                placeholder="Paste content here..."
-               className="w-full h-[400px] p-10 bg-slate-50/30 dark:bg-slate-850/30 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[2rem] outline-none font-mono text-xs resize-none leading-relaxed dark:text-white"
+               className="w-full h-64 sm:h-96 p-5 bg-slate-50/30 dark:bg-slate-850/30 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[1.5rem] outline-none font-mono text-xs resize-none leading-relaxed dark:text-white"
              />
            </div>
         </div>
       )}
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4">
           <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-md animate-in fade-in duration-300" onClick={() => !loading && setIsModalOpen(false)} />
-          <div className="bg-white dark:bg-slate-900 w-full max-w-2xl rounded-[3rem] shadow-2xl relative overflow-hidden animate-in fade-in zoom-in duration-300 border border-slate-200 dark:border-slate-800">
-            <div className="bg-indigo-600 p-10 text-white flex justify-between items-center relative overflow-hidden">
-              <h2 className="text-3xl font-black tracking-tight">AI Quiz Architect</h2>
-              <button onClick={() => setIsModalOpen(false)} className="p-3 hover:bg-white/20 rounded-2xl transition-colors"><X className="w-7 h-7" /></button>
+          <div className="bg-white dark:bg-slate-900 w-full sm:max-w-2xl rounded-t-[2rem] sm:rounded-[2rem] shadow-2xl relative overflow-hidden animate-in slide-in-from-bottom duration-300 sm:animate-in sm:fade-in sm:zoom-in border border-slate-200 dark:border-slate-800 max-h-[90vh] overflow-y-auto">
+            <div className="bg-indigo-600 p-6 sm:p-8 text-white flex justify-between items-center">
+              <h2 className="text-xl sm:text-2xl font-black tracking-tight">AI Quiz Architect</h2>
+              <button onClick={() => setIsModalOpen(false)} className="p-2.5 hover:bg-white/20 rounded-xl transition-colors"><X className="w-5 h-5" /></button>
             </div>
-            <form onSubmit={handleCreateQuiz} className="p-10 space-y-8">
+            <form onSubmit={handleCreateQuiz} className="p-5 sm:p-8 space-y-5">
               <input 
                 type="text" 
                 required
                 placeholder="Quiz Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 outline-none font-bold dark:text-white"
+                className="w-full px-5 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 outline-none font-bold dark:text-white text-sm"
               />
               <textarea 
                 required
                 placeholder="Paste syllabus content..."
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                className="w-full h-48 px-6 py-5 rounded-[2rem] bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 outline-none font-medium text-sm resize-none dark:text-slate-300"
+                className="w-full h-40 px-5 py-4 rounded-[1.5rem] bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 outline-none font-medium text-sm resize-none dark:text-slate-300"
               />
-              <button type="submit" disabled={loading} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-5 rounded-[1.5rem] shadow-xl disabled:opacity-50 flex items-center justify-center gap-3">
-                {loading ? <Loader2 className="w-6 h-6 animate-spin" /> : <Sparkles className="w-6 h-6" />}
+              <button type="submit" disabled={loading} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-[1.25rem] shadow-xl disabled:opacity-50 flex items-center justify-center gap-3 text-sm">
+                {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Sparkles className="w-5 h-5" />}
                 DEPLOY ASSESSMENT
               </button>
             </form>
